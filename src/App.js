@@ -15,17 +15,44 @@ function App() {
   // traffic is complicated. It should be an array of strings that starts out as ['car', 'truck']
   const [vehicles, setVehicles] = useState(['car', 'truck']);
 
+  function handleCar() {
+    vehicles.push('car');
+
+    setVehicles([...vehicles]);
+  }
+
+  function handleBus() {
+    vehicles.push('bus');
+
+    setVehicles([...vehicles]);
+  }
+
+  function handleTruck() {
+    vehicles.push('truck');
+
+    setVehicles([...vehicles]);
+  }
+
+  function handleBike() {
+    vehicles.push('motorcycle');
+
+    setVehicles([...vehicles]);
+  }
   return (
     <div className="App">
       <div className="fight">
         <div className="monster" style={{ fontSize: `${alienSize}rem` }}>
           {/* the width of the alien should be ten times whatever the alien size is in state */}
           <img src="alien.png" width={alienSize * 10} />
-          <div className='buttons'>
+          <div className="buttons">
             {/* when you click this button, the alien's size in state should go up by one */}
-            <button onClick={() => setAlienSize(alienSize + ATTACK_MODIFIER)}>Oh no! The alien is gobblin up all the electricity!</button>
+            <button onClick={() => setAlienSize(alienSize + ATTACK_MODIFIER)}>
+              Oh no! The alien is gobblin up all the electricity!
+            </button>
             {/* when you click this button, the lizard's size in state should go down by one */}
-            <button onClick={() => setLizardSize(lizardSize - ATTACK_MODIFIER)} >Amazing! The alien zapped the lizard!</button>
+            <button onClick={() => setLizardSize(lizardSize - ATTACK_MODIFIER)}>
+              Amazing! The alien zapped the lizard!
+            </button>
           </div>
         </div>
         <div className="monster" style={{ fontSize: `${lizardSize}rem` }}>
@@ -33,9 +60,13 @@ function App() {
           <img src="lizard.png" width={lizardSize * 10} />
           <div className="buttons">
             {/* when you click this button, the lizard's size in state should go up by one */}
-            <button onClick={() => setLizardSize(lizardSize + ATTACK_MODIFIER)}>Yegads! The lizard is ramping up to its final form!</button>
+            <button onClick={() => setLizardSize(lizardSize + ATTACK_MODIFIER)}>
+              Yegads! The lizard is ramping up to its final form!
+            </button>
             {/* when you click this button, the alien's size in state should go up by one */}
-            <button onClick={() => setAlienSize(alienSize - ATTACK_MODIFIER)}>Oh my! The lizard chomped down on the alien!</button>
+            <button onClick={() => setAlienSize(alienSize - ATTACK_MODIFIER)}>
+              Oh my! The lizard chomped down on the alien!
+            </button>
           </div>
         </div>
       </div>
@@ -54,21 +85,19 @@ function App() {
       Do you have something like that in state that you could pass as a vehicles prop?
       */}
       <VehicleList vehicles={vehicles} />
-      <div className='buttons'>
+      <div className="buttons">
         {/* This part is weird */}
         {/* On click, you should set the traffic in state to be a copy of the same array that's already in state, but immutably add a 'car' to the end */}
-        <button onClick={() => setVehicles(vehicles.push('car'))}>Car</button>
+        <button onClick={handleCar}>Car</button>
         {/* On click, you should set the traffic in state to be a copy of the same array that's already in state, but immutably add a 'bus' to the end */}
-        <button onClick={() => setVehicles(vehicles.push('bus'))}>Bus</button>
+        <button onClick={handleBus}>Bus</button>
         {/* On click, you should set the traffic in state to be a copy of the same array that's already in state, but immutably add a 'truck' to the end */}
-        <button onClick={() => setVehicles(vehicles.push('truck'))}>Truck</button>
+        <button onClick={handleTruck}>Truck</button>
         {/* On click, you should set the traffic in state to be a copy of the same array that's already in state, but immutably add a 'motorcycle' to the end */}
-        <button onClick={() => setVehicles(vehicles.push('motorcycle'))}>Motorcycle</button>
+        <button onClick={handleBike}>Motorcycle</button>
       </div>
-
     </div>
   );
 }
 
 export default App;
-
